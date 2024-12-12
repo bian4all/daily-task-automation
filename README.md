@@ -1,28 +1,58 @@
-import datetime
-import os
 
-def organize_files_by_date(folder_path):
-    """
-    Organizes files in the specified folder into subfolders by their creation date.
-    """
-    if not os.path.exists(folder_path):
-        print(f"Folder '{folder_path}' does not exist!")
-        return
+# Daily Task Automation Script
 
-    for file_name in os.listdir(folder_path):
-        file_path = os.path.join(folder_path, file_name)
+## Overview
+This Python script automates the organization of files in a specified folder by their creation date. It simplifies file management by sorting files into subfolders named by date.
 
-        if os.path.isfile(file_path):
-            creation_time = os.path.getctime(file_path)
-            date_folder = datetime.datetime.fromtimestamp(creation_time).strftime('%Y-%m-%d')
-            date_folder_path = os.path.join(folder_path, date_folder)
+## Features
+- Automatically creates subfolders based on the creation date of files.
+- Moves files into respective date-named subfolders.
+- User-friendly and easy to execute.
 
-            if not os.path.exists(date_folder_path):
-                os.makedirs(date_folder_path)
+## Requirements
+- Python 3.6 or higher.
+- Operating system with file system access.
 
-            os.rename(file_path, os.path.join(date_folder_path, file_name))
-            print(f"Moved '{file_name}' to folder '{date_folder}'")
+## Installation
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/bian4all/daily-task-automation.git
+   ```
+2. Navigate to the project folder:
+   ```bash
+   cd daily-task-automation
+   ```
 
-if __name__ == "__main__":
-    folder_to_organize = input("Enter the folder path to organize: ")
-    organize_files_by_date(folder_to_organize)
+## Usage
+1. Open a terminal and run the script:
+   ```bash
+   python organize_files.py
+   ```
+2. Enter the folder path you want to organize when prompted.
+
+## Example
+If you have the following folder structure:
+```
+MyFolder
+├── file1.txt
+├── file2.jpg
+├── file3.docx
+```
+After running the script, it will look like this:
+```
+MyFolder
+├── 2024-12-12
+│   ├── file1.txt
+│   ├── file2.jpg
+├── 2024-12-11
+│   ├── file3.docx
+```
+
+## Contributing
+Contributions are welcome! Please fork the repository, make changes, and submit a pull request.
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+Created by **bian4all**
